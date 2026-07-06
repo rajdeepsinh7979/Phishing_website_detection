@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Website Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-content animate-on-scroll">
+                <div class="hero-badge">
+                    <i class="bi bi-shield-check"></i>
+                    AI-Powered Security
+                </div>
+                <h1>Phishing Website<br><span class="gradient-text">Detection System</span></h1>
+                <p>Advanced machine learning model leveraging Stacking Classification to analyze website features and detect phishing threats in real-time with high accuracy.</p>
+                <div class="hero-tags">
+                    <span><i class="bi bi-cpu"></i> Machine Learning</span>
+                    <span><i class="bi bi-shield-lock"></i> Threat Detection</span>
+                    <span><i class="bi bi-graph-up"></i> 94.44% Accuracy</span>
+                </div>
+            </div>
+            <div class="hero-visual animate-on-scroll">
+                <svg class="hero-shield" viewBox="0 0 460 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.9"/>
+                            <stop offset="100%" stop-color="#4F46E5" stop-opacity="0.9"/>
+                        </linearGradient>
+                        <linearGradient id="shieldFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.06"/>
+                            <stop offset="100%" stop-color="#4F46E5" stop-opacity="0.06"/>
+                        </linearGradient>
+                        <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#00D4FF" stop-opacity="0.15"/>
+                            <stop offset="100%" stop-color="#00D4FF" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                    <!-- Glow circles -->
+                    <circle cx="230" cy="230" r="210" stroke="url(#shieldGrad)" stroke-width="0.5" opacity="0.15"/>
+                    <circle cx="230" cy="230" r="190" stroke="url(#shieldGrad)" stroke-width="0.3" opacity="0.1"/>
+                    <!-- Center glow -->
+                    <circle cx="230" cy="230" r="120" fill="url(#centerGlow)"/>
+                    <!-- Shield shape -->
+                    <path d="M230 55 L385 140 L385 275 C385 365 230 410 230 410 C230 410 75 365 75 275 L75 140 Z" stroke="url(#shieldGrad)" stroke-width="1.5" fill="url(#shieldFill)"/>
+                    <!-- Inner shield -->
+                    <path d="M230 95 L350 165 L350 265 C350 335 230 375 230 375 C230 375 110 335 110 265 L110 165 Z" stroke="url(#shieldGrad)" stroke-width="0.8" fill="none" opacity="0.35"/>
+                    <!-- Checkmark -->
+                    <path d="M195 235 L218 258 L268 205" stroke="#00D4FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+                    <!-- Circuit lines left -->
+                    <line x1="75" y1="200" x2="30" y2="200" stroke="#00D4FF" stroke-width="0.8" opacity="0.3"/>
+                    <line x1="75" y1="260" x2="45" y2="280" stroke="#4F46E5" stroke-width="0.8" opacity="0.25"/>
+                    <line x1="110" y1="140" x2="80" y2="120" stroke="#00D4FF" stroke-width="0.8" opacity="0.2"/>
+                    <!-- Circuit lines right -->
+                    <line x1="385" y1="200" x2="430" y2="200" stroke="#00D4FF" stroke-width="0.8" opacity="0.3"/>
+                    <line x1="385" y1="260" x2="415" y2="280" stroke="#4F46E5" stroke-width="0.8" opacity="0.25"/>
+                    <line x1="350" y1="140" x2="380" y2="120" stroke="#00D4FF" stroke-width="0.8" opacity="0.2"/>
+                    <!-- Top circuit -->
+                    <line x1="230" y1="55" x2="230" y2="20" stroke="#00D4FF" stroke-width="0.8" opacity="0.3"/>
+                    <!-- Endpoint dots -->
+                    <circle cx="30" cy="200" r="2.5" fill="#00D4FF" opacity="0.5"/>
+                    <circle cx="430" cy="200" r="2.5" fill="#00D4FF" opacity="0.5"/>
+                    <circle cx="230" cy="20" r="2.5" fill="#00D4FF" opacity="0.5"/>
+                    <circle cx="45" cy="280" r="2" fill="#4F46E5" opacity="0.4"/>
+                    <circle cx="415" cy="280" r="2" fill="#4F46E5" opacity="0.4"/>
+                    <circle cx="80" cy="120" r="2" fill="#00D4FF" opacity="0.35"/>
+                    <circle cx="380" cy="120" r="2" fill="#00D4FF" opacity="0.35"/>
+                    <!-- Data nodes -->
+                    <circle cx="150" cy="160" r="1.5" fill="#4F46E5" opacity="0.4"/>
+                    <circle cx="310" cy="160" r="1.5" fill="#4F46E5" opacity="0.4"/>
+                    <circle cx="150" cy="310" r="1.5" fill="#00D4FF" opacity="0.3"/>
+                    <circle cx="310" cy="310" r="1.5" fill="#00D4FF" opacity="0.3"/>
+                    <!-- Pulse rings -->
+                    <circle cx="230" cy="230" r="55" stroke="#00D4FF" stroke-width="0.6" fill="none" opacity="0.15" class="pulse-ring"/>
+                    <circle cx="230" cy="230" r="90" stroke="#00D4FF" stroke-width="0.4" fill="none" opacity="0.1" class="pulse-ring pulse-delay-1"/>
+                    <circle cx="230" cy="230" r="125" stroke="#4F46E5" stroke-width="0.3" fill="none" opacity="0.08" class="pulse-ring pulse-delay-2"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon"><i class="bi bi-bullseye"></i></div>
+                <div class="stat-info">
+                    <span class="stat-value">94.44%</span>
+                    <span class="stat-label">Model Accuracy</span>
+                </div>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon"><i class="bi bi-crosshair"></i></div>
+                <div class="stat-info">
+                    <span class="stat-value">95.0%</span>
+                    <span class="stat-label">Precision Score</span>
+                </div>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon"><i class="bi bi-arrow-repeat"></i></div>
+                <div class="stat-info">
+                    <span class="stat-value">95.0%</span>
+                    <span class="stat-label">Recall Score</span>
+                </div>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon"><i class="bi bi-grid-3x3-gap"></i></div>
+                <div class="stat-info">
+                    <span class="stat-value">31</span>
+                    <span class="stat-label">Features Analyzed</span>
+                </div>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon"><i class="bi bi-cpu"></i></div>
+                <div class="stat-info">
+                    <span class="stat-value">Stacking</span>
+                    <span class="stat-label">ML Algorithm</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Dashboard -->
+    <section class="dashboard-section">
+        <div class="dashboard-grid">
+            <!-- Left: Form Panel -->
+            <div class="form-panel animate-on-scroll">
+                <div class="panel-header">
+                    <div class="panel-title-group">
+                        <div class="panel-icon"><i class="bi bi-sliders2"></i></div>
+                        <div>
+                            <h2>Feature Analysis</h2>
+                            <p>Select the characteristics of the website to analyze</p>
+                        </div>
+                    </div>
+                </div>
+
+                <form action="/predict" method="POST">
+
+                    <div class="feature-grid">
+
+                        {% for category, features in feature_groups.items() %}
+
+<div class="section">
+
+    <h2>{{ category }}</h2>
+
+    <div class="feature-grid">
+
+        {% for feature in features %}
+
+        <div class="card">
+
+            <label>{{ feature_labels[feature] }}</label>
+
+            <select name="{{ feature }}" required>
+
+                <option value="">Select {{ feature_labels[feature] }}</option>
+
+                {% for value, text in feature_options[feature] %}
+                    <option value="{{ value }}">{{ text }}</option>
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endfor %}
+                    </div>
+
+                    <div class="button-area">
+
+                        <button type="reset" class="btn-secondary">
+                            <i class="bi bi-arrow-counterclockwise"></i> Reset
+                        </button>
+
+                        <button type="submit" class="btn-primary">
+                            <i class="bi bi-search"></i> Analyze Website
+                        </button>
+
+                    </div>
+
+                </form>
+            </div>
+
+            <!-- Right: Live Panel -->
+            <div class="live-panel animate-on-scroll">
+                <div class="panel-header">
+                    <div class="panel-title-group">
+                        <div class="panel-icon"><i class="bi bi-activity"></i></div>
+                        <div>
+                            <h2>Live Dashboard</h2>
+                            <p>Real-time analysis results</p>
+                        </div>
+                    </div>
+                    <div class="status-dot">
+                        <span class="dot"></span>
+                        <span>Ready</span>
+                    </div>
+                </div>
+
+                <div class="live-cards">
+                    <!-- Analysis Status -->
+                    <div class="live-card">
+                        <div class="live-card-header">
+                            <i class="bi bi-radar"></i>
+                            <span>Analysis Status</span>
+                        </div>
+                        <div class="live-card-body">
+                            <span class="live-value pending">Awaiting Input</span>
+                            <span class="live-sub">Submit features to begin analysis</span>
+                        </div>
+                    </div>
+
+                    <!-- Threat Level -->
+                    <div class="live-card">
+                        <div class="live-card-header">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            <span>Threat Level</span>
+                        </div>
+                        <div class="live-card-body">
+                            <div class="threat-gauge">
+                                <div class="threat-labels">
+                                    <span>Low</span>
+                                    <span>Medium</span>
+                                    <span>High</span>
+                                    <span>Critical</span>
+                                </div>
+                                <div class="threat-bar">
+                                    <div class="threat-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confidence Score -->
+                    <div class="live-card">
+                        <div class="live-card-header">
+                            <i class="bi bi-speedometer2"></i>
+                            <span>Confidence Score</span>
+                        </div>
+                        <div class="live-card-body">
+                            <div class="confidence-display">
+                                <span class="confidence-value">—</span>
+                                <span class="confidence-unit">%</span>
+                            </div>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Website Status -->
+                    <div class="live-card">
+                        <div class="live-card-header">
+                            <i class="bi bi-globe2"></i>
+                            <span>Website Status</span>
+                        </div>
+                        <div class="live-card-body">
+                            <span class="live-value neutral">Not Analyzed</span>
+                        </div>
+                    </div>
+
+                    <!-- Recommendation -->
+                    <div class="live-card">
+                        <div class="live-card-header">
+                            <i class="bi bi-lightbulb"></i>
+                            <span>Recommendation</span>
+                        </div>
+                        <div class="live-card-body">
+                            <p class="live-desc">Complete the feature analysis form and submit to receive a detailed security assessment and actionable recommendations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Placeholder Illustration -->
+                <div class="dashboard-placeholder">
+                    <svg viewBox="0 0 240 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="120" cy="90" r="60" stroke="rgba(0,212,255,0.15)" stroke-width="1" fill="rgba(0,212,255,0.03)"/>
+                        <circle cx="120" cy="90" r="40" stroke="rgba(0,212,255,0.1)" stroke-width="0.8" fill="none"/>
+                        <path d="M105 90 L115 100 L135 80" stroke="rgba(0,212,255,0.25)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <rect x="40" y="160" width="160" height="6" rx="3" fill="rgba(255,255,255,0.04)"/>
+                        <rect x="70" y="175" width="100" height="4" rx="2" fill="rgba(255,255,255,0.03)"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <i class="bi bi-shield-check"></i>
+                    Phishing Website Detection
+                </div>
+                <p>Enterprise-grade phishing detection powered by machine learning.</p>
+            </div>
+            <div class="footer-tech">
+                <span><i class="bi bi-cpu"></i> AI Powered</span>
+                <span><i class="bi bi-lightning-charge"></i> Flask</span>
+                <span><i class="bi bi-diagram-3"></i> Scikit-Learn</span>
+                <span><i class="bi bi-lock"></i> Secure</span>
+            </div>
+            
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+            document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>

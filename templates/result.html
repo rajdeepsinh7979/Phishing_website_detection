@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Report</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+<div class="container">
+
+    <header class="animate-on-scroll">
+
+        <div class="header-icon">
+            <i class="bi bi-file-earmark-bar-graph"></i>
+        </div>
+
+        <h1>AI Phishing Detection Report</h1>
+
+        <p>Stacking Classification Model — Analysis Complete</p>
+
+    </header>
+
+
+    <div class="top-grid">
+
+        <div class="prediction-card {% if 'Legitimate' in result %}safe{% else %}danger{% endif %} animate-on-scroll">
+
+            <div class="card-label">
+                <i class="bi bi-shield-check"></i>
+                <span>Prediction Result</span>
+            </div>
+
+            <h1>
+                {% if 'Legitimate' in result %}
+                    <i class="bi bi-check-circle-fill"></i> Legitimate Website
+                {% else %}
+                    <i class="bi bi-exclamation-triangle-fill"></i> Phishing Website
+                {% endif %}
+            </h1>
+
+            <div class="confidence-row">
+                <span class="confidence-label">Confidence Score</span>
+                <span class="confidence-pct">{{ confidence }}%</span>
+            </div>
+
+            <div class="progress">
+
+                <div class="progress-fill {% if 'Legitimate' in result %}safe-fill{% else %}danger-fill{% endif %}"
+                     style="width: {{ confidence }}%;">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stats-card animate-on-scroll">
+
+            <div class="card-label">
+                <i class="bi bi-graph-up-arrow"></i>
+                <span>Model Performance</span>
+            </div>
+
+            <div class="stats">
+
+                <div class="stat-item">
+                    <span class="stat-num">94.44%</span>
+                    <span class="stat-name">Accuracy</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-num">95%</span>
+                    <span class="stat-name">Precision</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-num">95%</span>
+                    <span class="stat-name">Recall</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-num">95%</span>
+                    <span class="stat-name">F1 Score</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="middle-grid">
+
+        <div class="chart-card animate-on-scroll">
+
+            <div class="card-label">
+                <i class="bi bi-pie-chart"></i>
+                <span>Prediction Probability</span>
+            </div>
+
+            <div class="chart-wrap">
+                <canvas id="predictionChart"></canvas>
+            </div>
+
+        </div>
+
+
+        <div class="recommendation-card animate-on-scroll">
+
+            <div class="card-label">
+                <i class="bi bi-lightbulb"></i>
+                <span>Recommendation</span>
+            </div>
+
+            <p>{{ recommendation }}</p>
+
+            {% if 'Legitimate' in result %}
+
+            <ul>
+
+                <li><i class="bi bi-check-circle-fill"></i> Website appears safe.</li>
+                <li><i class="bi bi-check-circle-fill"></i> SSL configuration looks acceptable.</li>
+                <li><i class="bi bi-check-circle-fill"></i> Continue browsing with normal caution.</li>
+
+            </ul>
+
+            {% else %}
+
+            <ul>
+
+                <li><i class="bi bi-x-circle-fill"></i> Do not enter passwords.</li>
+                <li><i class="bi bi-x-circle-fill"></i> Avoid banking transactions.</li>
+                <li><i class="bi bi-x-circle-fill"></i> Avoid entering personal information.</li>
+                <li><i class="bi bi-x-circle-fill"></i> Close the website immediately.</li>
+
+            </ul>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <div class="summary-card animate-on-scroll">
+
+        <div class="card-label">
+            <i class="bi bi-clipboard-data"></i>
+            <span>Prediction Summary</span>
+        </div>
+
+        <table>
+
+            <tr>
+                <td><i class="bi bi-cpu"></i> Model</td>
+                <td>Stacking Classifier</td>
+            </tr>
+
+            <tr>
+                <td><i class="bi bi-database"></i> Dataset</td>
+                <td>Kaggle Phishing Website Dataset</td>
+            </tr>
+
+            <tr>
+                <td><i class="bi bi-grid-3x3-gap"></i> Features</td>
+                <td>30</td>
+            </tr>
+
+            <tr>
+                <td><i class="bi bi-bullseye"></i> Prediction</td>
+                <td>{{ result }}</td>
+            </tr>
+
+            <tr>
+                <td><i class="bi bi-speedometer2"></i> Confidence</td>
+                <td>{{ confidence }}%</td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <div class="button-area animate-on-scroll">
+
+        <a href="{{ url_for('home') }}" class="btn">
+            <i class="bi bi-arrow-left"></i>
+            Analyze Another Website
+        </a>
+
+    </div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+});
+
+const confidence = {{ confidence }};
+const phishing = confidence;
+const legitimate = 100 - confidence;
+
+new Chart(document.getElementById("predictionChart"), {
+    type: "doughnut",
+    data: {
+        labels: ["Phishing", "Legitimate"],
+        datasets: [{
+            data: [phishing, legitimate],
+            backgroundColor: ["#EF4444", "#22C55E"],
+            borderColor: ["rgba(239,68,68,0.3)", "rgba(34,197,94,0.3)"],
+            borderWidth: 2,
+            hoverBorderColor: ["#EF4444", "#22C55E"],
+            hoverBorderWidth: 3
+        }]
+    },
+    options: {
+        responsive: true,
+        cutout: '68%',
+        plugins: {
+            legend: {
+                position: "bottom",
+                labels: {
+                    color: '#94A3B8',
+                    font: { family: "'Poppins', sans-serif", size: 12, weight: '400' },
+                    padding: 20,
+                    usePointStyle: true,
+                    pointStyleWidth: 10
+                }
+            },
+            tooltip: {
+                backgroundColor: 'rgba(15, 23, 42, 0.95)',
+                titleColor: '#F1F5F9',
+                bodyColor: '#94A3B8',
+                borderColor: 'rgba(255,255,255,0.08)',
+                borderWidth: 1,
+                cornerRadius: 10,
+                padding: 12,
+                titleFont: { family: "'Poppins', sans-serif", weight: '600' },
+                bodyFont: { family: "'Poppins', sans-serif" },
+                callbacks: {
+                    label: function(context) {
+                        return ' ' + context.label + ': ' + context.parsed + '%';
+                    }
+                }
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>
